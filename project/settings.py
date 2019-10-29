@@ -120,3 +120,14 @@ STATIC_URL = '/static/'
 
 LOGIN_URL = '/admin/login/'
 LOGOUT_REDIRECT_URL = '/'
+
+DEBUG = False
+
+try:
+    from .local_settings import *
+except ImportError:
+    pass
+
+if not DEBUG:
+    import django_heroku
+    django_heroku.settings(locals())
